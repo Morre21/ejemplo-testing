@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import AgregarElemento from "./AgregarElemento";
+import ListaElementos from "./ListaElementos";
 
-function App() {
+const App = () => {
+  const [items, setItems] = useState([]);
+
+  // Función para agregar un ítem a la lista
+  const addItem = (item) => {
+    setItems((prevItems) => [...prevItems, item]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container mt-4">
+      <h1 className="text-center mb-4">Lista de Items</h1>
+      <AgregarElemento onAddItem={addItem} />
+      <ListaElementos items={items} />
     </div>
   );
-}
+};
 
 export default App;
+
